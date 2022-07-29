@@ -1,15 +1,16 @@
 <template>
     <div>
-        <h1>hello,world!{{name}}</h1>
+        <h1>{{msg}}{{name}}</h1>
     </div>
 </template>
 
 <script>
     export default {
-        name:'Shool',
+        name:'School',
         data() {
             return {
-                name:'杨'
+                msg:'hello,world!',
+                name:'实验高中'
             }
         },
     }
