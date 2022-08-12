@@ -9,13 +9,6 @@ import Vue from 'vue'
 Vue.use(Vuex)
 //用于响应组件中的动作
 const actions = {
-    // increment(context,value){
-    //     // console.log("actions调用了",context,value)
-    //     context.commit('Increment',value)
-    // },
-    // decrement(context,value){
-    //     context.commit('Decrement',value)
-    // },
     incrementOdd(context,value){
         if(context.state.sum % 2){
             context.commit('Increment',value)
@@ -31,16 +24,12 @@ const actions = {
 //用于响应组件中操作数据
 const mutations = {
     Increment(state,value){
-        // console.log("Increment调用了",state,value)
+        // console.log("mutations调用了",state,value)
         state.sum += value
     },
     Decrement(state,value){
-        // console.log("Decrement调用了",state,value)
+        // console.log("mutations调用了",state,value)
         state.sum -= value
-    },
-    Add_Person(state,value){
-        console.log("Add_Person调用了",state,value)
-        state.personList.unshift(value)
     }
 }
 
@@ -48,10 +37,7 @@ const mutations = {
 const state = {
     sum:0,
     school:'河南',
-    name:'yang',
-    personList:[
-        {id:'001',name:'张三'}
-    ]
+    name:'yang'
 }
 
 const getters = {
