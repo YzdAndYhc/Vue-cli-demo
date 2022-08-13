@@ -3,9 +3,12 @@
         <h1>人员列表</h1>
         <input type="text" placeholder="请输入姓名" v-model="name"/>
         <button @click="add">添加</button>
+        <button @click="addWang">添加一个姓王的</button>
+        <button @click="addPersonAuto">自动添加</button>
         <ul>
             <li v-for="p in personList" :key="p.id">{{p.name}}</li>
         </ul>
+        <h3>列表第一个人的姓名{{fristName}}</h3>
         <h4 style="color:red">上面组件的总和为{{sum}}</h4>
     </div>
 </template>
@@ -22,18 +25,29 @@ import { nanoid } from 'nanoid'
         },
         computed:{
             personList(){
-               return this.$store.state.personList
+               return this.$store.state.PersonAbout.personList
             },
             sum(){
-               return this.$store.state.sum
+               return this.$store.state.CountAbout.sum
+            },
+            fristName(){
+               return this.$store.getters['PersonAbout/fristName']
             }
             // ...mapState(['personList'])
         },
         methods:{
             add(){
                 const personObj = {id:nanoid(),name:this.name}
-                this.$store.commit('Add_Person',personObj)
+                this.$store.commit('PersonAbout/Add_Person',personObj)
                 this.name = ''
+            },
+            addWang(){
+                const personObj = {id:nanoid(),name:this.name}
+                this.$store.dispatch('PersonAbout/addWang',personObj)
+                this.name = ''
+            },
+            addPersonAuto(){
+                this.$store.dispatch('PersonAbout/addPersonServer')
             }
         }
     }
