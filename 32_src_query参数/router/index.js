@@ -27,8 +27,7 @@ export default new VueRouter({
                     component:Message,
                     children:[
                         {
-                            name:'xiangqing',
-                            path:'detial/:id/:title',
+                            path:'detial',
                             component:Detial,
                         }
                     ]

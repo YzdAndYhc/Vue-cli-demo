@@ -3,9 +3,8 @@
         <ul>
             <li v-for="msg in messageList" :key="msg.id">
                 <router-link :to="{
-                    name:'xiangqing',
                     path:'/home/message/detial',
-                    params:{
+                    query:{
                         id:msg.id,
                         title:msg.title
                     }
