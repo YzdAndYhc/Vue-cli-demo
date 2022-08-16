@@ -23,7 +23,19 @@ const router =  new VueRouter({
                 {
                     path:'news',
                     component:News,
-                    meta:{isAuth:true,title:'News'}
+                    meta:{isAuth:true,title:'News'},
+                    //独享路由守卫
+                    beforeEnter(to,from,next){
+                        if(to.meta.isAuth){
+                            if(localStorage.getItem('school') === 'hello'){
+                                next();
+                            }else{
+                                alert("学校名称不对")
+                            }
+                        }else{
+                            next();
+                        }
+                    }
                 },
                 {
                     path:'message',
@@ -58,8 +70,8 @@ const router =  new VueRouter({
         },
     ]
 })
-
-router.beforeEach((to,from,next)=>{
+//前置路由守卫
+/* router.beforeEach((to,from,next)=>{
     // 通过路径指定拦截
     // if(to.path === '/home/news' || to.path === '/home/message'){
     // 通过属性配置统一拦截
@@ -72,8 +84,8 @@ router.beforeEach((to,from,next)=>{
     }else{
         next();
     }
-})
-
+}) */
+//后置路由守卫
 router.afterEach((to,from)=>{
     document.title = to.meta.title || 'Hello World!'
 })
